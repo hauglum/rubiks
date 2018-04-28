@@ -31,7 +31,7 @@ public class CubeTest {
     public void canPresentFrontSideOfCubeAfterTopClockwise(){
         Cube cube = new Cube();
         cube.topClockwise();
-        assertThat("Should be able to presentFrontSide front side after one operation on he cube",  cube.presentFrontSide(), equalTo("R|R\nW|W"));
+        assertThat("Should be able to present front side after one operation on he cube",  cube.presentFrontSide(), equalTo("R|R\nW|W"));
         System.out.println(cube.presentFrontSide());
     }
 
@@ -39,8 +39,7 @@ public class CubeTest {
     public void canPresentFrontSideOfCubeAfter2TopClockwise(){
         Cube cube = new Cube();
         cube.topClockwise(2);
-        assertThat("Should be able to presentFrontSide front side after one operation on he cube",  cube.presentFrontSide(), equalTo("Y|Y\nW|W"));
+        assertThat("Should be able to present front side after two operation on he cube",  cube.presentFrontSide(), equalTo("Y|Y\nW|W"));
         System.out.println(cube.presentFrontSide());
     }
-
 }
