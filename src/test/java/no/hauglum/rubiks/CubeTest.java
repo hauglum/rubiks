@@ -65,8 +65,9 @@ public class CubeTest {
 
     @Test
     public void canPresentFrontSideOfCubeAfterTopCounterClockwise(){
-        cube.turnTopCounterClockwise();
-        assertThat(getMainReason(1),  cube.presentFrontSide(), equalTo("O|O\nW|W"));
+        int times = 1;
+        cube.turnTopCounterClockwise(times);
+        assertThat(getMainReason(times),  cube.presentFrontSide(), equalTo("O|O\nW|W"));
     }
 
     @Test
@@ -94,6 +95,41 @@ public class CubeTest {
     public void canPresentFrontSideOfCubeAfterBottomClockwise(){
         cube.turnBottomClockwise();
         assertThat(getMainReason(1),  cube.presentFrontSide(), equalTo("W|W\nR|R"));
+    }
+
+    @Test
+    public void canPresentFrontSideOfCubeAfter2BottomClockwise(){
+        int n = 2;
+        cube.turnBottomClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nY|Y"));
+    }
+
+    @Test
+    public void canPresentFrontSideOfCubeAfter3BottomClockwise(){
+        int n = 3;
+        cube.turnBottomClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nO|O"));
+    }
+
+    @Test
+    public void canPresentFrontSideOfCubeAfter4BottomClockwise(){
+        int n = 4;
+        cube.turnBottomClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nW|W"));
+    }
+
+    @Test
+    public void canPresentFrontSideOfCubeAfterBottomCounterClockwise(){
+        int n = 1;
+        cube.turnBottomCounterClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nO|O"));
+    }
+
+    @Test
+    public void canPresentFrontSideOfCubeAfterRightSideClockwise(){
+        int n = 1;
+        cube.turnRightsideClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nW|W"));
     }
 
     private String getMainReason(int n) {

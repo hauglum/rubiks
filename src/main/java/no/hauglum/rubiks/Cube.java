@@ -68,23 +68,28 @@ class Cube {
     }
 
     /**
-     * Rotates top of cube clock wise once
+     * Rotates top of cube counter clock wise once
      */
-    public void turnTopCounterClockwise() {
-        Tile tile000 = cube[0][0][0];
-        Tile tile010 = cube[0][1][0];
-        Tile tile001 = cube[0][0][1];
-        Tile tile011 = cube[0][1][1];
+    private void turnTopCounterClockwise() {
+        int x = 0;
+        turnXCounterClockwise(cube[x]);
+    }
+
+    private void turnXCounterClockwise(Tile[][] topOrBottom) {
+        Tile tile000 = topOrBottom[0][0];
+        Tile tile010 = topOrBottom[1][0];
+        Tile tile001 = topOrBottom[0][1];
+        Tile tile011 = topOrBottom[1][1];
 
         tile000.rotateXCounterClockwise();
         tile010.rotateXCounterClockwise();
         tile001.rotateXCounterClockwise();
         tile011.rotateXCounterClockwise();
 
-        cube[0][0][0] = tile001;
-        cube[0][1][0] = tile000;
-        cube[0][0][1] = tile011;
-        cube[0][1][1] = tile010;
+        topOrBottom[0][0] = tile001;
+        topOrBottom[1][0] = tile000;
+        topOrBottom[0][1] = tile011;
+        topOrBottom[1][1] = tile010;
     }
 
     public void turnTopCounterClockwise(int times) {
@@ -95,5 +100,31 @@ class Cube {
 
     public void turnBottomClockwise() {
         turnXClockwise(cube[1]);
+    }
+
+    public void turnBottomClockwise(int times) {
+        for (int i = 0; i < times; i++) {
+            turnBottomClockwise();
+        }
+    }
+
+    public void turnBottomCounterClockwise(int times) {
+        for (int i = 0; i < times; i++) {
+            turnBottomCounterClockwise();
+        }
+    }
+
+    private void turnBottomCounterClockwise() {
+        turnXCounterClockwise(cube[1]);
+    }
+
+    public void turnRightsideClockwise(int times) {
+        for (int i = 0; i < times; i++) {
+            turnRightsideClockwise();
+        }
+    }
+
+    private void turnRightsideClockwise() {
+
     }
 }
