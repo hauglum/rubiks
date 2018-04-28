@@ -35,14 +35,15 @@ class Cube {
     /**
      * Rotates top of cube clock wise once
      */
-    void topClockwise() {
+    void turnTopClockwise() {
         Tile tile000 = cube[0][0][0];
-        tile000.rotateXClockwise();
         Tile tile010 = cube[0][1][0];
-        tile010.rotateXClockwise();
         Tile tile001 = cube[0][0][1];
-        tile001.rotateXClockwise();
         Tile tile011 = cube[0][1][1];
+
+        tile000.rotateXClockwise();
+        tile010.rotateXClockwise();
+        tile001.rotateXClockwise();
         tile011.rotateXClockwise();
 
         cube[0][0][0] = tile010;
@@ -52,12 +53,32 @@ class Cube {
       }
 
     /**
-     * topClockwise n times
+     * turnTopClockwise n times
      * @param times
      */
-    void topClockwise(int times) {
+    void turnTopClockwise(int times) {
         for (int i = 0; i < times; i++) {
-            topClockwise();
+            turnTopClockwise();
         }
+    }
+
+    /**
+     * Rotates top of cube clock wise once
+     */
+    public void turnTopCounterClockwise() {
+        Tile tile000 = cube[0][0][0];
+        Tile tile010 = cube[0][1][0];
+        Tile tile001 = cube[0][0][1];
+        Tile tile011 = cube[0][1][1];
+
+        tile000.rotateXCounterClockwise();
+        tile010.rotateXCounterClockwise();
+        tile001.rotateXCounterClockwise();
+        tile011.rotateXCounterClockwise();
+
+        cube[0][0][0] = tile001;
+        cube[0][1][0] = tile000;
+        cube[0][0][1] = tile011;
+        cube[0][1][1] = tile010;
     }
 }

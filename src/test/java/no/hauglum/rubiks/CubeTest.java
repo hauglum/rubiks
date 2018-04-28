@@ -11,35 +11,64 @@ import static org.hamcrest.Matchers.equalTo;
 public class CubeTest {
 
 
+    private Cube cube;
+
     @Before
     public void setUp() {
+        cube = new Cube();
     }
 
     @After
     public void tearDown() {
+        System.out.println(cube.presentFrontSide());
         System.out.println();
     }
 
     @Test
     public void canPresentFrontSideOfCube(){
-        Cube cube = new Cube();
         assertThat("Should be able to presentFrontSide front side of cube",  cube.presentFrontSide(), equalTo("W|W\nW|W"));
-        System.out.println(cube.presentFrontSide());
     }
 
     @Test
     public void canPresentFrontSideOfCubeAfterTopClockwise(){
-        Cube cube = new Cube();
-        cube.topClockwise();
-        assertThat("Should be able to present front side after one operation on he cube",  cube.presentFrontSide(), equalTo("R|R\nW|W"));
-        System.out.println(cube.presentFrontSide());
+        cube.turnTopClockwise();
+        assertThat(getMainReason(1),  cube.presentFrontSide(), equalTo("R|R\nW|W"));
     }
 
     @Test
     public void canPresentFrontSideOfCubeAfter2TopClockwise(){
-        Cube cube = new Cube();
-        cube.topClockwise(2);
-        assertThat("Should be able to present front side after two operation on he cube",  cube.presentFrontSide(), equalTo("Y|Y\nW|W"));
-        System.out.println(cube.presentFrontSide());
+        int n = 2;
+        cube.turnTopClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("Y|Y\nW|W"));
+    }
+
+    @Test
+    public void canPresentFrontSideOfCubeAfter3TopClockwise(){
+        int n = 3;
+        cube.turnTopClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("O|O\nW|W"));
+    }
+
+    @Test
+    public void canPresentFrontSideOfCubeAfter4TopClockwise(){
+        cube.turnTopClockwise(4);
+        assertThat("Should be able to present front side after one complete turn of top of the  cube",  cube.presentFrontSide(), equalTo("W|W\nW|W"));
+    }
+
+    @Test
+    public void canPresentFrontSideOfCubeAfter5TopClockwise(){
+        int n = 5;
+        cube.turnTopClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("R|R\nW|W"));
+    }
+
+    @Test
+    public void canPresentFrontSideOfCubeAfterTopCounterClockwise(){
+        cube.turnTopCounterClockwise();
+        assertThat(getMainReason(1),  cube.presentFrontSide(), equalTo("O|O\nW|W"));
+    }
+
+    private String getMainReason(int n) {
+        return "Should be able to present front side after "+ n + " operation on he cube";
     }
 }
