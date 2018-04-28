@@ -24,6 +24,13 @@ public class Tile {
         this.leftSideColor = leftSideColor;
     }
 
+    public Tile(String frontColor, String rightSideColor, String leftSideColor, String backColor) {
+        this.frontColor = frontColor;
+        this.rightSideColor = rightSideColor;
+        this.leftSideColor = leftSideColor;
+        this.backColor = backColor;
+    }
+
     @Override
     public String toString() {
         return frontColor;

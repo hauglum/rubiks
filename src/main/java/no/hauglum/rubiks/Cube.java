@@ -8,10 +8,10 @@ class Cube {
     private final Tile[][][] cube = new Tile[2][2][2];
 
     Cube() {
-        cube[0][0][0] = new Tile("W");
-        cube[0][1][0] = new Tile("W", "R");
-        cube[0][0][1] = new Tile(null, null, "O");
-        cube[0][1][1] = new Tile(null, "R", null);
+        cube[0][0][0] = new Tile("W", null, "O");
+        cube[0][1][0] = new Tile("W", "R", null);
+        cube[0][0][1] = new Tile(null, null, "O", "Y");
+        cube[0][1][1] = new Tile(null, "R", null, "Y");
 
         cube[1][0][0] = new Tile("W");
         cube[1][1][0] = new Tile("W");
