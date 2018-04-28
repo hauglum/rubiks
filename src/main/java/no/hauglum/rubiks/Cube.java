@@ -13,9 +13,10 @@ class Cube {
         cube[0][0][1] = new Tile(null, null, "O", "Y");
         cube[0][1][1] = new Tile(null, "R", null, "Y");
 
-        cube[1][0][0] = new Tile("W");
-        cube[1][1][0] = new Tile("W");
-
+        cube[1][0][0] = new Tile("W", null, "O");
+        cube[1][1][0] = new Tile("W", "R", null);
+        cube[1][0][1] = new Tile(null, null, "O", "Y");
+        cube[1][1][1] = new Tile(null, "R", null, "Y");
 
     }
 
@@ -35,22 +36,26 @@ class Cube {
     /**
      * Rotates top of cube clock wise once
      */
-    void turnTopClockwise() {
-        Tile tile000 = cube[0][0][0];
-        Tile tile010 = cube[0][1][0];
-        Tile tile001 = cube[0][0][1];
-        Tile tile011 = cube[0][1][1];
-
-        tile000.rotateXClockwise();
-        tile010.rotateXClockwise();
-        tile001.rotateXClockwise();
-        tile011.rotateXClockwise();
-
-        cube[0][0][0] = tile010;
-        cube[0][1][0] = tile011;
-        cube[0][0][1] = tile000;
-        cube[0][1][1] = tile001;
+    private void turnTopClockwise() {
+        turnXClockwise(cube[0]);
       }
+
+    private void turnXClockwise(Tile[][] topOrBottom) {
+        Tile tile00 = topOrBottom[0][0];
+        Tile tile10 = topOrBottom[1][0];
+        Tile tile01 = topOrBottom[0][1];
+        Tile tile11 = topOrBottom[1][1];
+
+        tile00.rotateXClockwise();
+        tile10.rotateXClockwise();
+        tile01.rotateXClockwise();
+        tile11.rotateXClockwise();
+
+        topOrBottom[0][0] = tile10;
+        topOrBottom[1][0] = tile11;
+        topOrBottom[0][1] = tile00;
+        topOrBottom[1][1] = tile01;
+    }
 
     /**
      * turnTopClockwise n times
@@ -80,5 +85,15 @@ class Cube {
         cube[0][1][0] = tile000;
         cube[0][0][1] = tile011;
         cube[0][1][1] = tile010;
+    }
+
+    public void turnTopCounterClockwise(int times) {
+        for (int i = 0; i < times; i++) {
+            turnTopCounterClockwise();
+        }
+    }
+
+    public void turnBottomClockwise() {
+        turnXClockwise(cube[1]);
     }
 }
