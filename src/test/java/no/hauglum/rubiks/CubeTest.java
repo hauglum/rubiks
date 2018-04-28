@@ -12,18 +12,19 @@ public class CubeTest {
 
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
+        System.out.println();
     }
 
     @Test
     public void canPresentFrontSideOfCube(){
         Cube cube = new Cube();
         assertThat("Should be able to presentFrontSide front side of cube",  cube.presentFrontSide(), equalTo("W|W\nW|W"));
-        System.out.print(cube.presentFrontSide());
+        System.out.println(cube.presentFrontSide());
     }
 
     @Test
@@ -31,7 +32,15 @@ public class CubeTest {
         Cube cube = new Cube();
         cube.topClockwise();
         assertThat("Should be able to presentFrontSide front side after one operation on he cube",  cube.presentFrontSide(), equalTo("R|R\nW|W"));
-        System.out.print(cube.presentFrontSide());
+        System.out.println(cube.presentFrontSide());
+    }
+
+    @Test
+    public void canPresentFrontSideOfCubeAfter2TopClockwise(){
+        Cube cube = new Cube();
+        cube.topClockwise(2);
+        assertThat("Should be able to presentFrontSide front side after one operation on he cube",  cube.presentFrontSide(), equalTo("Y|Y\nW|W"));
+        System.out.println(cube.presentFrontSide());
     }
 
 }
