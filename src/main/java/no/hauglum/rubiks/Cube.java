@@ -8,15 +8,15 @@ class Cube {
     private final Tile[][][] cube = new Tile[2][2][2];
 
     Cube() {
-        cube[0][0][0] = new Tile("W", null, "O");
-        cube[0][1][0] = new Tile("W", "R", null);
+        cube[0][0][0] = new Tile("W", null, "O",null, "B", null);
+        cube[0][1][0] = new Tile("W", "R", null, null, "B", null);
         cube[0][0][1] = new Tile(null, null, "O", "Y");
         cube[0][1][1] = new Tile(null, "R", null, "Y");
 
         cube[1][0][0] = new Tile("W", null, "O");
-        cube[1][1][0] = new Tile("W", "R", null);
+        cube[1][1][0] = new Tile("W", "R", null, null, null, "G");
         cube[1][0][1] = new Tile(null, null, "O", "Y");
-        cube[1][1][1] = new Tile(null, "R", null, "Y");
+        cube[1][1][1] = new Tile(null, "R", null, "Y", null, "G");
 
     }
 
@@ -125,6 +125,19 @@ class Cube {
     }
 
     private void turnRightsideClockwise() {
+        Tile tile010 = cube[0][1][0];
+        Tile tile011 = cube[0][1][1];
+        Tile tile110 = cube[1][1][0];
+        Tile tile111 = cube[1][1][1];
 
+        tile010.rotateYClockwise();
+        tile011.rotateYClockwise();
+        tile110.rotateYClockwise();
+        tile111.rotateYClockwise();
+
+        cube[0][1][0] = tile110;
+        cube[0][1][1] = tile010;
+        cube[1][1][0] = tile111;
+        cube[1][1][1] = tile011;
     }
 }

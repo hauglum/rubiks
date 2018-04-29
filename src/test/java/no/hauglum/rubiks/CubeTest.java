@@ -129,7 +129,7 @@ public class CubeTest {
     public void canPresentFrontSideOfCubeAfterRightSideClockwise(){
         int n = 1;
         cube.turnRightsideClockwise(n);
-        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nW|W"));
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|G\nW|G"));
     }
 
     private String getMainReason(int n) {
