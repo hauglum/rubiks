@@ -10,12 +10,12 @@ class Cube {
     Cube() {
         cube[0][0][0] = new Tile("W", null, "O",null, "B", null);
         cube[0][1][0] = new Tile("W", "R", null, null, "B", null);
-        cube[0][0][1] = new Tile(null, null, "O", "Y");
-        cube[0][1][1] = new Tile(null, "R", null, "Y");
+        cube[0][0][1] = new Tile(null, null, "O", "Y", "B", null);
+        cube[0][1][1] = new Tile(null, "R", null, "Y", "B",null);
 
-        cube[1][0][0] = new Tile("W", null, "O");
+        cube[1][0][0] = new Tile("W", null, "O", null, null, "G");
         cube[1][1][0] = new Tile("W", "R", null, null, null, "G");
-        cube[1][0][1] = new Tile(null, null, "O", "Y");
+        cube[1][0][1] = new Tile(null, null, "O", "Y", null, "G");
         cube[1][1][1] = new Tile(null, "R", null, "Y", null, "G");
 
     }
@@ -125,19 +125,68 @@ class Cube {
     }
 
     private void turnRightsideClockwise() {
-        Tile tile010 = cube[0][1][0];
-        Tile tile011 = cube[0][1][1];
-        Tile tile110 = cube[1][1][0];
-        Tile tile111 = cube[1][1][1];
+        int y = 1;
+        yAxis(y);
+    }
+
+    private void yAxis(int y) {
+        Tile tile010 = cube[0][y][0];
+        Tile tile011 = cube[0][y][1];
+        Tile tile110 = cube[1][y][0];
+        Tile tile111 = cube[1][y][1];
 
         tile010.rotateYClockwise();
         tile011.rotateYClockwise();
         tile110.rotateYClockwise();
         tile111.rotateYClockwise();
 
-        cube[0][1][0] = tile110;
-        cube[0][1][1] = tile010;
-        cube[1][1][0] = tile111;
-        cube[1][1][1] = tile011;
+        cube[0][y][0] = tile110;
+        cube[0][y][1] = tile010;
+        cube[1][y][0] = tile111;
+        cube[1][y][1] = tile011;
+    }
+
+    public void turnLeftsideClockwise(int times) {
+        for (int i = 0; i < times; i++) {
+            turnLeftsideClockwise();
+        }
+    }
+
+    private void turnLeftsideClockwise() {
+        yAxis(0);
+
+    }
+
+    public void turnRightsideCounterClockwise(int times) {
+        for (int i = 0; i < times; i++) {
+            turnRightsideCounterClockwise();
+        }
+    }
+
+    private void turnRightsideCounterClockwise() {
+        turnLeftOrRightCounterClockwise(1);
+    }
+
+    private void turnLeftOrRightCounterClockwise(int y) {
+        Tile tile0y0 = cube[0][y][0];
+        Tile tile0y1 = cube[0][y][1];
+        Tile tile1y0 = cube[1][y][0];
+        Tile tile1y1 = cube[1][y][1];
+
+        tile0y0.rotateYCounterClockwise();
+        tile0y1.rotateYCounterClockwise();
+        tile1y0.rotateYCounterClockwise();
+        tile1y1.rotateYCounterClockwise();
+
+        cube[0][y][0] = tile0y1;
+        cube[0][y][1] = tile1y1;
+        cube[1][y][0] = tile0y0;
+        cube[1][y][1] = tile1y0;
+    }
+
+    public void turnLeftsideCounterClockwise(int times) {
+        for (int i = 0; i < times; i++) {
+            turnLeftOrRightCounterClockwise(0);
+        }
     }
 }

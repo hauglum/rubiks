@@ -87,4 +87,17 @@ public class Tile {
     private String getColor(String frontColor) {
         return Optional.ofNullable(frontColor).orElse(new String());
     }
+
+    public void rotateYCounterClockwise() {
+        String f = getColor(frontColor);
+        String bo = getColor(bottomColor);
+        String ba = getColor(backColor);
+        String t = getColor(topcolor);
+        //Do not inline!
+        frontColor = t;
+        bottomColor = f;
+        backColor = bo;
+        topcolor = ba;
+
+    }
 }
