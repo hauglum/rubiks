@@ -100,4 +100,40 @@ public class Tile {
         topcolor = ba;
 
     }
+
+    public void rotateZClockwise() {
+        String t = getColor(topcolor);
+        String r = getColor(rightSideColor);
+        String l = getColor(leftSideColor);
+        String b = getColor(bottomColor);
+        //Do not inline!
+        leftSideColor = b;
+        topcolor = l;
+        rightSideColor = t;
+        bottomColor = r;
+    }
+
+    public String getFrontColor() {
+        return frontColor;
+    }
+
+    public String getRightSideColor() {
+        return rightSideColor;
+    }
+
+    public String getLeftSideColor() {
+        return leftSideColor;
+    }
+
+    public String getBackColor() {
+        return backColor;
+    }
+
+    public String getBottomColor() {
+        return bottomColor;
+    }
+
+    public String getTopcolor() {
+        return topcolor;
+    }
 }

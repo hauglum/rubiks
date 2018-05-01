@@ -209,6 +209,29 @@ public class CubeTest {
         assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("G|W\nG|W"));
     }
 
+    @Test
+    public void canPresentFrontSideOfCubeAfterBackSideClockwise(){
+        int n = 1;
+        assertThat("",  cube.presentLeftSide(), equalTo("O|O\nO|O"));
+        cube.turnBacksideClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nW|W"));
+        assertThat("",  cube.presentLeftSide(), equalTo("G|O\nG|O"));
+        cube.turnBacksideClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nW|W"));
+        assertThat("",  cube.presentLeftSide(), equalTo("R|O\nR|O"));
+        cube.turnBacksideClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nW|W"));
+        assertThat("",  cube.presentLeftSide(), equalTo("B|O\nB|O"));
+        cube.turnBacksideClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nW|W"));
+        assertThat("",  cube.presentLeftSide(), equalTo("O|O\nO|O"));
+    }
+
+    //TODO rotate bak CCW
+
+    //TODO rotate front CW
+    //TODO rotate front CCW
+    //TODO present other than front side
     //TODO test combos of operations!
 
     private String getMainReason(int n) {

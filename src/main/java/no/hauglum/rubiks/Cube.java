@@ -17,7 +17,6 @@ class Cube {
         cube[1][1][0] = new Tile("W", "R", null, null, null, "G");
         cube[1][0][1] = new Tile(null, null, "O", "Y", null, "G");
         cube[1][1][1] = new Tile(null, "R", null, "Y", null, "G");
-
     }
 
     /**
@@ -31,6 +30,18 @@ class Cube {
                         cube[1][0][0] + "|" +
                         cube[1][1][0] ;
 
+    }
+
+    /**
+     *
+     * @return the left side of the cube
+     */
+    public String presentLeftSide() {
+        return
+                cube[0][0][1].getLeftSideColor() + "|" +
+                        cube[0][0][0].getLeftSideColor() + "\n" +
+                        cube[1][0][1].getLeftSideColor() + "|" +
+                        cube[1][0][0].getLeftSideColor() ;
     }
 
     /**
@@ -187,6 +198,28 @@ class Cube {
     public void turnLeftsideCounterClockwise(int times) {
         for (int i = 0; i < times; i++) {
             turnLeftOrRightCounterClockwise(0);
+        }
+    }
+
+    public void turnBacksideClockwise(int times) {
+        for (int i = 0; i < times; i++) {
+            {
+                int z = 1;
+                Tile tile00z = cube[0][0][z];
+                Tile tile01z = cube[0][1][z];
+                Tile tile10z = cube[1][0][z];
+                Tile tile11z = cube[1][1][z];
+
+                tile00z.rotateZClockwise();
+                tile01z.rotateZClockwise();
+                tile10z.rotateZClockwise();
+                tile11z.rotateZClockwise();
+
+                cube[0][0][z] = tile10z;
+                cube[0][1][z] = tile00z;
+                cube[1][0][z] = tile11z;
+                cube[1][1][z] = tile01z;
+            }
         }
     }
 }
