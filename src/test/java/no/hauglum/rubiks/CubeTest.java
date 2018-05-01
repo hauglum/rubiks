@@ -93,7 +93,7 @@ public class CubeTest {
 
     @Test
     public void canPresentFrontSideOfCubeAfterBottomClockwise(){
-        cube.turnBottomClockwise();
+        cube.turnBottomClockwise(1);
         assertThat(getMainReason(1),  cube.presentFrontSide(), equalTo("W|W\nR|R"));
     }
 
@@ -210,7 +210,7 @@ public class CubeTest {
     }
 
     @Test
-    public void canPresentFrontSideOfCubeAfterBackSideClockwise(){
+    public void canPresentAfterBackSideClockwise(){
         int n = 1;
         assertThat("",  cube.presentLeftSide(), equalTo("O|O\nO|O"));
         cube.turnBacksideClockwise(n);
@@ -227,12 +227,89 @@ public class CubeTest {
         assertThat("",  cube.presentLeftSide(), equalTo("O|O\nO|O"));
     }
 
-    //TODO rotate bak CCW
+    @Test
+    public void canPresentAfterBackSideCounterClockwise(){
+        int n = 1;
+        assertThat("",  cube.presentLeftSide(), equalTo("O|O\nO|O"));
+        cube.turnBacksideCounterClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nW|W"));
+        assertThat("",  cube.presentLeftSide(), equalTo("B|O\nB|O"));
+        cube.turnBacksideCounterClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nW|W"));
+        assertThat("",  cube.presentLeftSide(), equalTo("R|O\nR|O"));
+        cube.turnBacksideCounterClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nW|W"));
+        assertThat("",  cube.presentLeftSide(), equalTo("G|O\nG|O"));
+        cube.turnBacksideCounterClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nW|W"));
+        assertThat("",  cube.presentLeftSide(), equalTo("O|O\nO|O"));
+    }
 
-    //TODO rotate front CW
-    //TODO rotate front CCW
-    //TODO present other than front side
-    //TODO test combos of operations!
+    @Test
+    public void canPresentAfterFrontSideClockwise(){
+        int n = 1;
+        assertThat("",  cube.presentLeftSide(), equalTo("O|O\nO|O"));
+        cube.turnFrontsideClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nW|W"));
+        assertThat("",  cube.presentLeftSide(), equalTo("O|G\nO|G"));
+        cube.turnFrontsideClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nW|W"));
+        assertThat("",  cube.presentLeftSide(), equalTo("O|R\nO|R"));
+        cube.turnFrontsideClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nW|W"));
+        assertThat("",  cube.presentLeftSide(), equalTo("O|B\nO|B"));
+        cube.turnFrontsideClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nW|W"));
+        assertThat("",  cube.presentLeftSide(), equalTo("O|O\nO|O"));
+    }
+
+
+    @Test
+    public void canPresentAfterFrontSideCounterClockwise(){
+        int n = 1;
+        assertThat("",  cube.presentLeftSide(), equalTo("O|O\nO|O"));
+        cube.turnFrontsideCounteClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nW|W"));
+        assertThat("",  cube.presentLeftSide(), equalTo("O|B\nO|B"));
+        cube.turnFrontsideCounteClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nW|W"));
+        assertThat("",  cube.presentLeftSide(), equalTo("O|R\nO|R"));
+        cube.turnFrontsideCounteClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nW|W"));
+        assertThat("",  cube.presentLeftSide(), equalTo("O|G\nO|G"));
+        cube.turnFrontsideCounteClockwise(n);
+        assertThat(getMainReason(n),  cube.presentFrontSide(), equalTo("W|W\nW|W"));
+        assertThat("",  cube.presentLeftSide(), equalTo("O|O\nO|O"));
+    }
+
+    @Test
+    public void canPresentCorrectAfterCombosOfOperation(){
+        cube.turnTopClockwise(2);
+        assertThat("",  cube.presentFrontSide(), equalTo("Y|Y\nW|W"));
+        assertThat("",  cube.presentLeftSide(), equalTo("R|R\nO|O"));
+        assertThat("",  cube.presentRightSide(), equalTo("O|O\nR|R"));
+        assertThat("",  cube.presentTopSide(), equalTo("B|B\nB|B"));
+        assertThat("",  cube.presentBottomSide(), equalTo("G|G\nG|G"));
+        assertThat("",  cube.presentBackSide(), equalTo("W|W\nY|Y"));
+        cube.turnBottomClockwise(1);
+        cube.turnTopCounterClockwise(2);
+        cube.turnRightsideClockwise(1);
+        cube.turnLeftsideCounterClockwise(2);
+        cube.turnRightsideCounterClockwise(1);
+        cube.turnFrontsideCounteClockwise(2);
+        cube.turnBottomCounterClockwise(1);
+        cube.turnBacksideClockwise(2);
+        cube.turnLeftsideClockwise(1);
+        cube.turnBacksideCounterClockwise(2);
+        cube.turnFrontsideClockwise(1);
+        assertThat("",  cube.presentFrontSide(), equalTo("B|B\nR|Y"));
+        assertThat("",  cube.presentLeftSide(), equalTo("W|Y\nO|B"));
+        assertThat("",  cube.presentRightSide(), equalTo("O|O\nB|Y"));
+        assertThat("",  cube.presentTopSide(), equalTo("G|W\nR|W"));
+        assertThat("",  cube.presentBottomSide(), equalTo("W|O\nG|R"));
+        assertThat("",  cube.presentBackSide(), equalTo("G|R\nG|Y"));
+
+    }
 
     private String getMainReason(int n) {
         return "Should be able to present front side after "+ n + " operation on he cube";

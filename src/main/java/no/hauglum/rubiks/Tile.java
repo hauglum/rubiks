@@ -136,4 +136,16 @@ public class Tile {
     public String getTopcolor() {
         return topcolor;
     }
+
+    public void rotateZCounterClockwise() {
+        String t = getColor(topcolor);
+        String r = getColor(rightSideColor);
+        String l = getColor(leftSideColor);
+        String b = getColor(bottomColor);
+        //Do not inline!
+        leftSideColor = t;
+        topcolor = r;
+        rightSideColor = b;
+        bottomColor = l;
+    }
 }
