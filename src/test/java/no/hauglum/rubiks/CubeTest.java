@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import static no.hauglum.rubiks.Cube.Side.FRONT;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.equalTo;
@@ -285,12 +286,16 @@ public class CubeTest {
     @Test
     public void canPresentCorrectAfterCombosOfOperation(){
         cube.turnTopClockwise(2);
-        assertThat("",  cube.presentFrontSide(), equalTo("Y|Y\nW|W"));
+        Cube.Side side = FRONT;
+        Tile.Color y = Tile.Color.Y;
+        Tile.Color w = Tile.Color.W;
+        assertThat("",  cube.presentSide(side), equalTo(y + "|" + y + "\n" + w + "|" + w));
         assertThat("",  cube.presentLeftSide(), equalTo("R|R\nO|O"));
         assertThat("",  cube.presentRightSide(), equalTo("O|O\nR|R"));
         assertThat("",  cube.presentTopSide(), equalTo("B|B\nB|B"));
         assertThat("",  cube.presentBottomSide(), equalTo("G|G\nG|G"));
-        assertThat("",  cube.presentBackSide(), equalTo("W|W\nY|Y"));
+        assertThat("",  cube.presentBackSide(), equalTo(w + "|" + w + "\n" + y + "|" + y));
+
         cube.turnBottomClockwise(1);
         cube.turnTopCounterClockwise(2);
         cube.turnRightsideClockwise(1);
@@ -302,12 +307,12 @@ public class CubeTest {
         cube.turnLeftsideClockwise(1);
         cube.turnBacksideCounterClockwise(2);
         cube.turnFrontsideClockwise(1);
-        assertThat("",  cube.presentFrontSide(), equalTo("B|B\nR|Y"));
-        assertThat("",  cube.presentLeftSide(), equalTo("W|Y\nO|B"));
-        assertThat("",  cube.presentRightSide(), equalTo("O|O\nB|Y"));
-        assertThat("",  cube.presentTopSide(), equalTo("G|W\nR|W"));
-        assertThat("",  cube.presentBottomSide(), equalTo("W|O\nG|R"));
-        assertThat("",  cube.presentBackSide(), equalTo("G|R\nG|Y"));
+        assertThat("",  cube.presentFrontSide(), equalTo("B|B\nR|" + y));
+        assertThat("",  cube.presentLeftSide(), equalTo(w + "|" + y + "\nO|B"));
+        assertThat("",  cube.presentRightSide(), equalTo("O|O\nB|" + y));
+        assertThat("",  cube.presentTopSide(), equalTo("G|" + w + "\nR|" + w));
+        assertThat("",  cube.presentBottomSide(), equalTo(w + "|O\nG|R"));
+        assertThat("",  cube.presentBackSide(), equalTo("G|R\nG|" + y));
 
     }
 

@@ -5,6 +5,7 @@ package no.hauglum.rubiks;
  */
 class Cube {
 
+    public enum Side {FRONT, BACK, TOP, BOTTOM, LEFT, RIGHT}
     private final Tile[][][] cube = new Tile[2][2][2];
 
     Cube() {
@@ -17,6 +18,24 @@ class Cube {
         cube[1][1][0] = new Tile("W", "R", null, null, null, "G");
         cube[1][0][1] = new Tile(null, null, "O", "Y", null, "G");
         cube[1][1][1] = new Tile(null, "R", null, "Y", null, "G");
+    }
+
+    public String presentSide(Side side) {
+        switch (side) {
+            case FRONT:
+                return presentFrontSide();
+            case TOP:
+                return presentTopSide();
+            case BACK:
+                return presentBackSide();
+            case LEFT:
+                return presentLeftSide();
+            case RIGHT:
+                return presentRightSide();
+            case BOTTOM:
+                return presentBottomSide();
+        }
+        throw new IllegalArgumentException("Asked to present unknown side: " + side);
     }
 
     /**
@@ -49,7 +68,7 @@ class Cube {
      */
     private void turnTopClockwise() {
         turnXClockwise(cube[0]);
-      }
+    }
 
     private void turnXClockwise(Tile[][] topOrBottom) {
         Tile tile00 = topOrBottom[0][0];
@@ -229,7 +248,7 @@ class Cube {
 
     public void turnBacksideCounterClockwise(int times) {
         for (int i = 0; i < times; i++) {
-         turnBackCounterClockwise();
+            turnBackCounterClockwise();
         };
     }
 

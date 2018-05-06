@@ -4,6 +4,7 @@ import java.util.Optional;
 
 public class Tile {
 
+    public enum Color {Y,R,G,B,O,W}
     private String frontColor;
     private String rightSideColor;
     private String leftSideColor;
