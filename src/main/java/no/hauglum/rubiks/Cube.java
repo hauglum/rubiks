@@ -21,21 +21,26 @@ class Cube {
     }
 
     public String presentSide(Side side) {
-        switch (side) {
-            case FRONT:
-                return presentFrontSide();
-            case TOP:
-                return presentTopSide();
-            case BACK:
-                return presentBackSide();
-            case LEFT:
-                return presentLeftSide();
-            case RIGHT:
-                return presentRightSide();
-            case BOTTOM:
-                return presentBottomSide();
+        Exception ex = null;
+        try{
+            switch (side) {
+                case FRONT:
+                    return presentFrontSide();
+                case TOP:
+                    return presentTopSide();
+                case BACK:
+                    return presentBackSide();
+                case LEFT:
+                    return presentLeftSide();
+                case RIGHT:
+                    return presentRightSide();
+                case BOTTOM:
+                    return presentBottomSide();
+            }
+        }catch (Exception e){
+        ex = e;
         }
-        throw new IllegalArgumentException("Asked to present unknown side: " + side);
+        throw new IllegalArgumentException("Asked to present unknown side: " + side, ex);
     }
 
     /**

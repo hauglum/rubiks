@@ -12,27 +12,6 @@ public class Tile {
     private String bottomColor;
     private String topcolor;
 
-    public Tile(String frontColor) {
-        this.frontColor = frontColor;
-    }
-
-    public Tile(String frontColor, String rightSideColor) {
-        this.frontColor =  frontColor;
-        this.rightSideColor = rightSideColor;
-    }
-
-    public Tile(String frontColor, String rightSideColor, String leftSideColor) {
-        this.frontColor = frontColor;
-        this.rightSideColor = rightSideColor;
-        this.leftSideColor = leftSideColor;
-    }
-
-    public Tile(String frontColor, String rightSideColor, String leftSideColor, String backColor) {
-        this.frontColor = frontColor;
-        this.rightSideColor = rightSideColor;
-        this.leftSideColor = leftSideColor;
-        this.backColor = backColor;
-    }
 
     public Tile(String frontColor, String rightSideColor, String leftSideColor, String backColor, String topColor, String bottomColor) {
         this.frontColor = frontColor;

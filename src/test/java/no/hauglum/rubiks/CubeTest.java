@@ -336,6 +336,11 @@ public class CubeTest {
 
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void exceptionWhenPresenting(){
+        cube.presentSide(null);
+    }
+
     private void assumeThat(Cube.Side side, Color a, Color b, Color c, Color d) {
         assertThat("",  cube.presentSide(side), equalTo(a + "|" + b + "\n" + c + "|" + d));
     }
