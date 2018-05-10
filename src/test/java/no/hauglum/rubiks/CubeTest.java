@@ -8,7 +8,6 @@ import org.junit.Test;
 import static no.hauglum.rubiks.Cube.Side.*;
 import static no.hauglum.rubiks.Tile.Color.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.equalTo;
 
 public class CubeTest {
@@ -313,6 +312,13 @@ public class CubeTest {
         assumeThat(BACK, Y, Y, O, O);
 
         cube.turnRightsideClockwise(1);
+        assumeThat(FRONT, W, G, R, G);
+        assumeThat(LEFT, O, O, W, W);
+        assumeThat(RIGHT, Y, R, Y, R);
+        assumeThat(TOP, B, W, B, R);
+        assumeThat(BOTTOM, G, O, G, Y);
+        assumeThat(BACK, B, Y, B, O);
+
         cube.turnLeftsideCounterClockwise(2);
         cube.turnRightsideCounterClockwise(1);
         cube.turnFrontsideCounteClockwise(2);
@@ -321,12 +327,12 @@ public class CubeTest {
         cube.turnLeftsideClockwise(1);
         cube.turnBacksideCounterClockwise(2);
         cube.turnFrontsideClockwise(1);
-        assertThat("",  cube.presentFrontSide(), equalTo("B|B\nR|Y"));
-        assertThat("",  cube.presentLeftSide(), equalTo("W|Y\nO|B"));
-        assertThat("",  cube.presentRightSide(), equalTo("O|O\nB|Y"));
-        assertThat("",  cube.presentTopSide(), equalTo("G|W\nR|W"));
-        assertThat("",  cube.presentBottomSide(), equalTo("W|O\nG|R"));
-        assertThat("",  cube.presentBackSide(), equalTo("G|R\nG|Y"));
+        assumeThat(FRONT,B,B,R,Y);
+        assumeThat(LEFT,W,Y,O,B);
+        assumeThat(RIGHT,O,O,B,Y);
+        assumeThat(TOP,G,W,R,W);
+        assumeThat(BOTTOM,W,O,G,R);
+        assumeThat(BACK,G,R,G,Y);
 
     }
 

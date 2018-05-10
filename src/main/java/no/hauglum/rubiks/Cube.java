@@ -297,10 +297,10 @@ class Cube {
 
     public String presentTopSide() {
         return
-                cube[0][0][0].getTopcolor() + "|" +
-                        cube[0][1][0].getTopcolor() + "\n" +
-                        cube[0][1][0].getTopcolor() + "|" +
-                        cube[0][1][1].getTopcolor() ;
+                cube[0][0][1].getTopcolor() + "|" +
+                        cube[0][1][1].getTopcolor() + "\n" +
+                        cube[0][0][0].getTopcolor() + "|" +
+                        cube[0][1][0].getTopcolor() ;
 
     }
 
